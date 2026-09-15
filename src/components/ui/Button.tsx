@@ -13,7 +13,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 export default function Button({ variant = 'primary', href, as, children, className = '', ...props }: ButtonProps) {
   const Component = as || (href ? 'a' : 'button');
   
-  const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-200 uppercase tracking-widest text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black focus-visible:ring-white disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-200 uppercase tracking-widest text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black focus-visible:ring-white disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
   
   let variantStyles = "";
   switch(variant) {

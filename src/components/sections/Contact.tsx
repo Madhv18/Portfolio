@@ -1,8 +1,8 @@
 import { portfolio } from '../../data/portfolio';
 import FadeIn from '../ui/FadeIn';
-import MagneticButton from '../ui/MagneticButton';
 import SocialRail from '../layout/SocialRail';
 import { Mail } from 'lucide-react';
+import MagneticButton from '../ui/MagneticButton';
 
 export default function Contact() {
   const { identity } = portfolio;
@@ -33,18 +33,30 @@ export default function Contact() {
         </FadeIn>
 
         <FadeIn direction="up" delay={0.2} className="relative z-50">
-          <MagneticButton padding={100} strength={5}>
+          <div className="lg:hidden">
             <a
-              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${identity.email}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`mailto:${identity.email}`}
               className="group relative inline-flex items-center justify-center gap-4 px-10 py-6 md:px-14 md:py-8 bg-white text-background rounded-full font-medium text-lg md:text-xl transition-transform hover:scale-[1.02] active:scale-95 cursor-pointer"
               aria-label={`Send email to ${identity.email}`}
             >
               <span className="font-medium tracking-wide">Start a Conversation</span>
               <Mail className="w-5 h-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </a>
-          </MagneticButton>
+          </div>
+          <div className="hidden lg:block">
+            <MagneticButton padding={100} strength={5}>
+              <a
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${identity.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-center gap-4 px-10 py-6 md:px-14 md:py-8 bg-white text-background rounded-full font-medium text-lg md:text-xl transition-transform hover:scale-[1.02] active:scale-95 cursor-pointer"
+                aria-label={`Send email to ${identity.email}`}
+              >
+                <span className="font-medium tracking-wide">Start a Conversation</span>
+                <Mail className="w-5 h-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </a>
+            </MagneticButton>
+          </div>
         </FadeIn>
 
       </div>

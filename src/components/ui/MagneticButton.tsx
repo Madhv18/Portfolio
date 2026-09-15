@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 type MagneticButtonProps = {
@@ -18,9 +18,22 @@ export default function MagneticButton({
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isActive, setIsActive] = useState(false);
   const prefersReducedMotion = useReducedMotion();
+  const [isTouchOrMobile, setIsTouchOrMobile] = useState(false);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+      const isSmallScreen = window.innerWidth < 768;
+      setIsTouchOrMobile(isCoarse || isSmallScreen);
+    };
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current || prefersReducedMotion) return;
+    if (!ref.current || prefersReducedMotion || isTouchOrMobile) return;
+    if ((e.nativeEvent as PointerEvent).pointerType === 'touch') return;
     
     const { clientX, clientY } = e;
     const { left, top, width, height } = ref.current.getBoundingClientRect();
@@ -43,9 +56,18 @@ export default function MagneticButton({
   };
 
   const handleMouseLeave = () => {
+    if (isTouchOrMobile) return;
     setIsActive(false);
     setPosition({ x: 0, y: 0 });
   };
+
+  if (isTouchOrMobile) {
+    return (
+      <div className={`relative inline-block ${className}`}>
+        {children}
+      </div>
+    );
+  }
 
   return (
     <div 

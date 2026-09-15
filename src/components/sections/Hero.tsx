@@ -1,8 +1,8 @@
 import { portfolio } from '../../data/portfolio';
 import FadeIn from '../ui/FadeIn';
-import MagneticButton from '../ui/MagneticButton';
 import Button from '../ui/Button';
 import HeroAvatarMagnet from '../ui/HeroAvatarMagnet';
+import MagneticButton from '../ui/MagneticButton';
 
 export default function Hero() {
   return (
@@ -52,18 +52,30 @@ export default function Hero() {
         </FadeIn>
 
         <FadeIn delay={0.5} direction="up" className="ml-auto">
-          <MagneticButton>
+          <div className="lg:hidden">
             <Button 
               variant="contact" 
-              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${portfolio.identity.email}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`mailto:${portfolio.identity.email}`}
               aria-label="Contact Madhv Darji"
               title={`Email: ${portfolio.identity.email}`}
             >
               Contact Me
             </Button>
-          </MagneticButton>
+          </div>
+          <div className="hidden lg:block">
+            <MagneticButton>
+              <Button 
+                variant="contact" 
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${portfolio.identity.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Contact Madhv Darji"
+                title={`Email: ${portfolio.identity.email}`}
+              >
+                Contact Me
+              </Button>
+            </MagneticButton>
+          </div>
         </FadeIn>
       </div>
     </section>
