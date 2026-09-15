@@ -59,7 +59,9 @@ export default function SocialRail() {
         {identity.email && (
           <motion.a 
             variants={prefersReducedMotion ? {} : itemVariants}
-            href={`mailto:${identity.email}`} 
+            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${identity.email}`} 
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-white/50 hover:text-white hover:-translate-y-1 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm cursor-pointer"
             aria-label={`Send email to ${identity.email}`}
           >

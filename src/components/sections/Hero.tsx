@@ -55,7 +55,9 @@ export default function Hero() {
           <MagneticButton>
             <Button 
               variant="contact" 
-              href={`mailto:${portfolio.identity.email}`}
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${portfolio.identity.email}`}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Contact Madhv Darji"
               title={`Email: ${portfolio.identity.email}`}
             >
