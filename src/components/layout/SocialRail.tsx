@@ -27,7 +27,7 @@ export default function SocialRail() {
       whileInView="visible"
       viewport={{ once: true }}
       variants={containerVariants}
-      className="hidden lg:flex absolute left-8 xl:left-16 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20 pointer-events-auto"
+      className="hidden lg:flex absolute left-8 xl:left-16 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-50 pointer-events-auto"
     >
       <div className="flex flex-col items-center gap-6">
         {identity.github && (
@@ -60,7 +60,7 @@ export default function SocialRail() {
           <motion.a 
             variants={prefersReducedMotion ? {} : itemVariants}
             href={`mailto:${identity.email}`} 
-            className="text-white/50 hover:text-white hover:-translate-y-1 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm"
+            className="text-white/50 hover:text-white hover:-translate-y-1 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm cursor-pointer"
             aria-label={`Send email to ${identity.email}`}
           >
             <Mail className="w-5 h-5" />

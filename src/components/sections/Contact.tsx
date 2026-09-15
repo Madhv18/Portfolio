@@ -16,7 +16,7 @@ export default function Contact() {
       {/* Subtle Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 max-w-2xl aspect-square bg-white/[0.02] rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="w-full max-w-4xl mx-auto flex flex-col items-center z-10">
+      <div className="w-full max-w-4xl mx-auto flex flex-col items-center relative z-50 pointer-events-auto">
         
         <FadeIn direction="up">
           <h2 className="uppercase tracking-[0.25em] text-xs md:text-sm font-medium text-light-text opacity-50 mb-6">
@@ -32,11 +32,11 @@ export default function Contact() {
           </p>
         </FadeIn>
 
-        <FadeIn direction="up" delay={0.2}>
+        <FadeIn direction="up" delay={0.2} className="relative z-50">
           <MagneticButton padding={100} strength={5}>
             <a 
               href={`mailto:${identity.email}`}
-              className="group relative inline-flex items-center justify-center gap-4 px-10 py-6 md:px-14 md:py-8 bg-white text-background rounded-full font-medium text-lg md:text-xl transition-transform hover:scale-[1.02] active:scale-95"
+              className="group relative inline-flex items-center justify-center gap-4 px-10 py-6 md:px-14 md:py-8 bg-white text-background rounded-full font-medium text-lg md:text-xl transition-transform hover:scale-[1.02] active:scale-95 cursor-pointer"
               aria-label={`Send email to ${identity.email}`}
             >
               <span className="font-medium tracking-wide">Start a Conversation</span>
