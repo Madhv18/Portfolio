@@ -64,9 +64,15 @@ export const portfolio = {
       category: "Full-Stack",
       technologies: ["React", "TypeScript", "Node.js", "Express", "Supabase", "PostgreSQL", "Resend"],
       description: "A responsive full-stack insurance and investment website with a dedicated Admin Leads panel.",
+      highlights: [
+        "REST APIs for lead capture and service inquiries",
+        "Supabase/PostgreSQL lead storage with Supabase Auth",
+        "Resend email notifications for inquiries",
+        "Frontend deployed on Vercel and backend on Render",
+      ],
       liveUrl: "https://jeevan-deep-investment.vercel.app/",
       githubUrl: "",
-      images: [],
+      images: ["/images/jeevandeep.png"],
     },
     {
       id: "02",
@@ -74,9 +80,15 @@ export const portfolio = {
       category: "AI / Full-Stack",
       technologies: ["Next.js", "React", "TypeScript", "FastAPI", "Python", "SQLAlchemy", "SQLite", "Tailwind CSS"],
       description: "A full-stack AI-powered resume optimization platform that enables users to upload, parse, edit, and analyze resumes.",
+      highlights: [
+        "Resume upload, parsing, editing, and analysis",
+        "ATS scoring based on keyword and job-description alignment",
+        "Job matching, resume rewriting, and improvement recommendations",
+        "Revision tracking with persistent SQLite storage",
+      ],
       liveUrl: "",
       githubUrl: "https://github.com/Madhv18/resume-checker",
-      images: [],
+      images: ["/images/careerai.jpg"],
     },
     {
       id: "03",
@@ -84,9 +96,15 @@ export const portfolio = {
       category: "AI / Machine Learning",
       technologies: ["Python", "scikit-learn", "TF-IDF", "Logistic Regression", "Streamlit"],
       description: "An interactive machine-learning application that classifies SMS messages as spam or not spam.",
+      highlights: [
+        "TF-IDF + Logistic Regression classification model",
+        "Trained on 5,500+ labeled SMS messages",
+        "97.8% classification accuracy",
+        "Interactive Streamlit deployment for real-time classification",
+      ],
       liveUrl: "https://spam-classifier-wmcp7izx88cb4so6qmcha8.streamlit.app",
       githubUrl: "",
-      images: [],
+      images: ["/images/sms-spam.png"],
     },
     {
       id: "04",
@@ -94,9 +112,15 @@ export const portfolio = {
       category: "Academic",
       technologies: ["React.js", "HTML", "CSS", "MySQL"],
       description: "A recipe-sharing platform for browsing and exploring recipes.",
+      highlights: [
+        "Responsive recipe-sharing platform",
+        "MySQL-backed recipe storage",
+        "Search and filtering for faster recipe discovery",
+        "Built with React.js, HTML, and CSS",
+      ],
       liveUrl: "",
       githubUrl: "",
-      images: [],
+      images: ["/images/cookverse.jpg"],
     }
   ],
 };

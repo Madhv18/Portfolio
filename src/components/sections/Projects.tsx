@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { portfolio } from '../../data/portfolio';
-import { ExternalLink, Code, ArrowRight, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 import FadeIn from '../ui/FadeIn';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
@@ -114,7 +114,7 @@ export default function Projects() {
         </FadeIn>
 
         {/* Project Showcase Container */}
-        <div className="relative w-full aspect-auto md:aspect-[16/9] min-h-[650px] md:min-h-[500px] flex items-center justify-center">
+        <div className={`relative w-full aspect-auto md:aspect-[16/9] ${project.id === '02' ? 'min-h-[860px] sm:min-h-[760px]' : 'min-h-[780px] sm:min-h-[720px]'} md:min-h-[500px] flex items-center justify-center transition-[min-height] duration-300`}>
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={page}
@@ -142,80 +142,81 @@ export default function Projects() {
               className="absolute w-full h-full flex items-center cursor-grab active:cursor-grabbing"
             >
               {/* Card Layout */}
-              <div className="w-full h-full bg-[#0A0A0A] border border-[rgba(255,255,255,0.05)] rounded-2xl md:rounded-[2rem] p-6 sm:p-8 md:p-16 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+              <div className="w-full h-full bg-[#0A0A0A] border border-[rgba(255,255,255,0.05)] rounded-2xl md:rounded-[2rem] p-6 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col justify-center md:flex-row md:items-center gap-6 sm:gap-8 md:gap-12">
                 
                 {/* Subtle Highlights */}
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white opacity-[0.01] blur-[100px] rounded-full pointer-events-none" />
 
-                <div className="flex flex-col z-10">
-                  <div className="flex items-center gap-4 mb-4 md:mb-10">
-                    <span className="font-mono text-sm md:text-base text-white/30">
-                      {project.id}
-                    </span>
-                    <span className="h-px w-8 bg-white/10" />
-                    <span className="uppercase tracking-[0.2em] text-[10px] md:text-xs font-semibold text-white/50">
-                      {project.category}
-                    </span>
-                  </div>
-                  
-                  <h4 className="text-3xl md:text-5xl lg:text-7xl font-semibold tracking-tight text-white leading-[1.1] mb-4 md:mb-10 max-w-4xl">
-                    {project.title}
-                  </h4>
-                  
-                  <p className="text-base sm:text-lg md:text-2xl text-white/50 leading-relaxed font-light max-w-3xl">
-                    {project.description}
-                  </p>
-                </div>
-                
-                {/* Footer Section */}
-                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-10 z-10 mt-6 sm:mt-12 md:mt-0 pt-6 sm:pt-8 md:pt-0 border-t border-[rgba(255,255,255,0.03)] md:border-none">
-                  
-                  <div className="flex flex-wrap gap-2 md:gap-3 max-w-2xl">
-                    {project.technologies.map((tech, i) => (
-                      <span 
-                        key={i} 
-                        className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs md:text-sm font-medium text-white/70 tracking-wide"
-                      >
-                        {tech}
+                {/* Content Side */}
+                <div className="flex flex-col z-10 w-full min-w-0 md:w-1/2 lg:w-[45%] order-2 md:order-1">
+                  <div>
+                    <div className="flex items-center gap-4 mb-3 md:mb-5">
+                      <span className="font-mono text-sm md:text-base text-white/30">
+                        {project.id}
                       </span>
-                    ))}
+                      <span className="h-px w-8 bg-white/10" />
+                      <span className="uppercase tracking-[0.2em] text-[10px] md:text-xs font-semibold text-white/50">
+                        {project.category}
+                      </span>
+                    </div>
+                    
+                    <h4 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.1] mb-3 md:mb-4">
+                      {project.title}
+                    </h4>
+                    
+                    <p className="text-sm sm:text-base md:text-lg text-white/50 leading-relaxed font-light">
+                      {project.description}
+                    </p>
+
+                    {/* Key Highlights */}
+                    {project.highlights && project.highlights.length > 0 && (
+                      <div className="mt-4 md:mt-5">
+                        <h5 className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-white/40 mb-2.5">
+                          Key Highlights
+                        </h5>
+                        <ul className="space-y-1.5 md:space-y-2">
+                          {project.highlights.map((highlight, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-start gap-2.5 text-xs md:text-sm text-white/65 leading-relaxed font-light"
+                            >
+                              <span className="text-white/30 text-[10px] select-none mt-1 shrink-0">•</span>
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                   
-                  {/* Action Links */}
-                  {(project.liveUrl || project.githubUrl) && (
-                    <div className="flex flex-wrap gap-4 md:gap-6 shrink-0">
-                      {project.githubUrl && (
-                        <a 
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          onPointerDown={(e) => e.stopPropagation()} // Prevent drag conflict
-                          className={`flex items-center gap-2 px-6 py-3 md:py-4 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-[#0A0A0A] group ${
-                            project.id === "02"
-                              ? "bg-white text-black hover:bg-white/80"
-                              : "border border-white/20 text-white hover:bg-white hover:text-black"
-                          }`}
-                          aria-label={`View GitHub repository: ${project.title}`}
+                  {/* Footer Section */}
+                  <div className={`w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 z-10 ${project.id === '02' ? 'mt-4 pt-4 sm:mt-8 sm:pt-6' : 'mt-6 pt-5 sm:mt-8 sm:pt-6'} border-t border-[rgba(255,255,255,0.03)] md:mt-8 md:pt-6 md:border-none`}>
+                    <div className="w-full flex flex-wrap gap-2 md:gap-2.5">
+                      {project.technologies.map((tech, i) => (
+                        <span 
+                          key={i} 
+                          className="px-3 py-1.5 md:px-3.5 md:py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] md:text-xs font-medium text-white/70 tracking-wide whitespace-nowrap"
                         >
-                          <Code className="w-4 h-4 md:w-5 md:h-5" />
-                          <span className="uppercase tracking-widest text-xs">Code</span>
-                        </a>
-                      )}
-                      
-                      {project.liveUrl && (
-                        <a 
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          onPointerDown={(e) => e.stopPropagation()} // Prevent drag conflict
-                          className="flex items-center gap-2 px-6 py-3 md:py-4 rounded-full bg-white text-black font-medium hover:bg-white/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-[#0A0A0A] group"
-                          aria-label={`View live project: ${project.title}`}
-                        >
-                          <span className="uppercase tracking-widest text-xs">Live Site</span>
-                          <ExternalLink className="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        </a>
-                      )}
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Image Side */}
+                <div className="relative z-10 w-full md:w-1/2 lg:w-[55%] h-auto min-h-[200px] rounded-xl md:rounded-2xl overflow-hidden border border-white/5 bg-[#0f0f0f] order-1 md:order-2 group flex items-center justify-center md:p-4">
+                  {project.images && project.images.length > 0 ? (
+                    <img 
+                      src={project.images[0]} 
+                      alt={`${project.title} interface showcase`}
+                      className="w-full h-full max-h-[300px] md:max-h-[450px] object-contain object-center group-hover:scale-[1.02] transition-transform duration-700 ease-out" 
+                      draggable={false}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-white/5 flex items-center justify-center">
+                      <span className="text-white/20 text-sm tracking-widest uppercase">No Image</span>
                     </div>
                   )}
                 </div>
