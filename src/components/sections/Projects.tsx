@@ -114,7 +114,7 @@ export default function Projects() {
         </FadeIn>
 
         {/* Project Showcase Container */}
-        <div className={`relative w-full aspect-auto md:aspect-[16/9] ${project.id === '02' ? 'min-h-[860px] sm:min-h-[760px]' : 'min-h-[780px] sm:min-h-[720px]'} md:min-h-[500px] flex items-center justify-center transition-[min-height] duration-300`}>
+        <div className="relative w-full">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={page}
@@ -139,10 +139,10 @@ export default function Projects() {
                   paginate(-1);
                 }
               }}
-              className="absolute w-full h-full flex items-center cursor-grab active:cursor-grabbing"
+              className="w-full flex items-center cursor-grab active:cursor-grabbing"
             >
               {/* Card Layout */}
-              <div className="w-full h-full bg-[#0A0A0A] border border-[rgba(255,255,255,0.05)] rounded-2xl md:rounded-[2rem] p-6 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col justify-center md:flex-row md:items-center gap-6 sm:gap-8 md:gap-12">
+              <div className="w-full min-h-[610px] sm:min-h-[540px] md:min-h-[490px] bg-[#0A0A0A] border border-[rgba(255,255,255,0.05)] rounded-2xl md:rounded-[2rem] p-6 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row md:items-center gap-6 sm:gap-8 md:gap-12">
                 
                 {/* Subtle Highlights */}
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -168,54 +168,32 @@ export default function Projects() {
                     <p className="text-sm sm:text-base md:text-lg text-white/50 leading-relaxed font-light">
                       {project.description}
                     </p>
-
-                    {/* Key Highlights */}
-                    {project.highlights && project.highlights.length > 0 && (
-                      <div className="mt-4 md:mt-5">
-                        <h5 className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-white/40 mb-2.5">
-                          Key Highlights
-                        </h5>
-                        <ul className="space-y-1.5 md:space-y-2">
-                          {project.highlights.map((highlight, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-start gap-2.5 text-xs md:text-sm text-white/65 leading-relaxed font-light"
-                            >
-                              <span className="text-white/30 text-[10px] select-none mt-1 shrink-0">•</span>
-                              <span>{highlight}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
                   </div>
                   
-                  {/* Footer Section */}
-                  <div className={`w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 z-10 ${project.id === '02' ? 'mt-4 pt-4 sm:mt-8 sm:pt-6' : 'mt-6 pt-5 sm:mt-8 sm:pt-6'} border-t border-[rgba(255,255,255,0.03)] md:mt-8 md:pt-6 md:border-none`}>
-                    <div className="w-full flex flex-wrap gap-2 md:gap-2.5">
-                      {project.technologies.map((tech, i) => (
-                        <span 
-                          key={i} 
-                          className="px-3 py-1.5 md:px-3.5 md:py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] md:text-xs font-medium text-white/70 tracking-wide whitespace-nowrap"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Technology Pills */}
+                  <div className="w-full flex flex-wrap gap-2 md:gap-2.5 mt-6 md:mt-8">
+                    {project.technologies.map((tech, i) => (
+                      <span 
+                        key={i} 
+                        className="px-3 py-1.5 md:px-3.5 md:py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] md:text-xs font-medium text-white/70 tracking-wide whitespace-nowrap"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
                 {/* Image Side */}
-                <div className="relative z-10 w-full md:w-1/2 lg:w-[55%] h-auto min-h-[200px] rounded-xl md:rounded-2xl overflow-hidden border border-white/5 bg-[#0f0f0f] order-1 md:order-2 group flex items-center justify-center md:p-4">
+                <div className="relative z-10 w-full md:w-1/2 lg:w-[55%] h-[200px] sm:h-[240px] md:h-auto md:self-stretch rounded-xl md:rounded-2xl overflow-hidden border border-white/5 bg-[#0f0f0f] order-1 md:order-2 group flex items-center justify-center p-2 sm:p-4">
                   {project.images && project.images.length > 0 ? (
                     <img 
                       src={project.images[0]} 
                       alt={`${project.title} interface showcase`}
-                      className="w-full h-full max-h-[300px] md:max-h-[450px] object-contain object-center group-hover:scale-[1.02] transition-transform duration-700 ease-out" 
+                      className="w-full h-full max-h-[190px] sm:max-h-[230px] md:max-h-[380px] object-contain object-center group-hover:scale-[1.02] transition-transform duration-700 ease-out" 
                       draggable={false}
                     />
                   ) : (
-                    <div className="w-full h-full bg-white/5 flex items-center justify-center">
+                    <div className="w-full h-full min-h-[200px] bg-white/5 flex items-center justify-center">
                       <span className="text-white/20 text-sm tracking-widest uppercase">No Image</span>
                     </div>
                   )}
